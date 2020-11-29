@@ -1,18 +1,21 @@
 pipeline {
+        agent none
         stages {
             stage ("Compile") {
+                    agent {
+                            label "Slave_Node_1"
+                        }
                 steps {
-                    node ("Slave_Node_1") {
                         sh "mvn compile"
                     }
-                }
-            }            
-            stage("unit test") {
-                steps {
-                    node ("Slave_Node_2") {
+                }        
+            stage("unit test") {  
+                    agent {
+                            label "Slave_Node_2"
+                        }
+                    steps {
                         sh "mvn test"
                     }
-                }
             }
         }
 }
