@@ -6,7 +6,7 @@ pipeline {
         stages {
             stage ("Compile") {
                     agent {
-                            label "Slave_Node_1"
+                            label "Slave1"
                         }
                 steps {
                         sh "mvn compile"
@@ -14,7 +14,7 @@ pipeline {
                 }        
             stage("unit test") {  
                     agent {
-                            label "Slave_Node_2"
+                            label "Slave2"
                         }
                     steps {
                         sh "mvn test"
